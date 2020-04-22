@@ -68,10 +68,12 @@ const actions = {
     })
   },
 
-  // user logout
+  // 退出登录
   logout({ commit, state }) {
     return new Promise((resolve, reject) => {
       logout(state.token).then(() => {
+        commit('SET_TOKEN', '')
+        commit('SET_ROLES', [])
         removeToken() // must remove  token  first
         resetRouter()
         commit('RESET_STATE')
