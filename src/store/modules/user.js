@@ -52,15 +52,13 @@ const actions = {
     return new Promise((resolve, reject) => {
       getInfo().then(response => {
         const { data } = response
-
         if (!data) {
-          reject('Verification failed, please Login again.')
+          reject('获取用户信息失败,请重新登录.')
         }
 
-        const { name, avatar } = data
-
+        const { name, icon } = data
         commit('SET_NAME', name)
-        commit('SET_AVATAR', avatar)
+        commit('SET_AVATAR', icon)
         resolve(data)
       }).catch(error => {
         reject(error)
