@@ -49,10 +49,31 @@ export const constantRoutes = [
     redirect: '/home',
     children: [{
       path: 'home',
-      name: '首页',
+      name: 'Home',
       component: () => import('@/views/pms/list'),
-      meta: { title: '首页', icon: 'el-icon-s-home' }
+      meta: { title: '首页', icon: 'home' }
     }]
+  },
+  {
+    path: '/pms',
+    component: Layout,
+    redirect: '/pms//productCategory/list',
+    name: 'Pms',
+    meta: { title: '商品', icon: 'product' },
+    children: [
+      {
+        path: '/productCategory/list',
+        name: 'Table',
+        component: () => import('@/views/pms/productCategory/list'),
+        meta: { title: '商品分类', icon: 'product-list' }
+      },
+      {
+        path: 'tree',
+        name: 'Tree',
+        component: () => import('@/views/tree/index'),
+        meta: { title: 'Tree', icon: 'tree' }
+      }
+    ]
   },
 
   {
