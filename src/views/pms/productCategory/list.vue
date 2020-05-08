@@ -1,12 +1,32 @@
 <template>
   <div class="app-container">
-    <div>
+    <el-card
+      class="operate-container" shadow="never">
+      <el-button
+        class="btn-add"
+        @click="handleAddProductCategory()"
+        >
+        添加
+      </el-button>
+    </el-card>
+    
+    <div class="table-container">
       <el-table :data="list" style="width:100%;margin-bottom:20px" row-key="id" :tree-props="{children: 'children', hasChildren: 'hasChildren'}">
-        <el-table-column prop="id" label="编号" width="80"></el-table-column>
-        <el-table-column prop="name" label="分类名称" width="180"></el-table-column>
-        <el-table-column prop="level" label="级别"></el-table-column>
-        <el-table-column prop="productCount" label="商品数量"></el-table-column>
-        <el-table-column prop="productUnit" label="数量单位"></el-table-column>
+        <el-table-column label="编号" width="80">
+          <template slot-scope="scope">{{scope.row.id}}</template>
+        </el-table-column>
+        <el-table-column label="分类名称" width="180">
+          <template slot-scope="scope">{{scope.row.name }}</template>
+        </el-table-column>
+        <el-table-column label="级别">
+          <template slot-scope="scope">{{scope.row.level | levelFilter}}</template>
+        </el-table-column>
+        <el-table-column  label="商品数量">
+          <template slot-scope="scope">{{scope.row.productCount }}</template>
+        </el-table-column>
+        <el-table-column  label="数量单位">
+          <template slot-scope="scope">{{scope.row.productUnit }}</template>
+        </el-table-column>
         <el-table-column label="导航栏">
           <template slot-scope="scope">
             <el-switch
@@ -25,9 +45,20 @@
               @change="handleShowStatusChange(scope.$index, scope.row)"></el-switch>
           </template>
         </el-table-column>
-        <el-table-column prop="sort" label="排序"></el-table-column>
-        <el-table-column label="设置"></el-table-column>
-        <el-table-column label="操作"></el-table-column>
+        <el-table-column label="排序">
+          <template slot-scope="scope">{{scope.row.sort }}</template>
+        </el-table-column>
+        <el-table-column label="设置">
+          <template slot-scope="scope">
+           <el-button size="mini" plain @click="handleTransferProduct(scope.$index,scope.row)">转移商品</el-button>
+          </template>
+        </el-table-column>
+        <el-table-column label="操作">
+          <template slot-scope="scope">
+            <el-button size="mini"  @click="handleUpdate(scope.$index,scope.row)">编辑</el-button>
+            <el-button size="mini"  type="danger" @click="handleDelete(scope.$index,scope.row)">删除</el-button>
+          </template>
+        </el-table-column>
       </el-table>
     </div>
   </div>
@@ -63,6 +94,12 @@
           this.total = response.data.total;
         })
       },
+      handleUpdate(index, row){
+      
+      },
+      handleDelete(index,row){
+      
+      },
       handleNavStatusChange(index, row){
         let data = new URLSearchParams();
         let ids = [];
@@ -90,6 +127,24 @@
             duration:1000
           });
         })
+      },
+      handleTransferProduct(index,row){
+        this.$message({
+          message:'转移商品',
+          type:'success',
+          duration:500
+        });
+      },
+      handleAddProductCategory(){
+        this.$router.push('AddProductCategory');
+      }
+    },
+    filters:{
+      levelFilter(value){
+        if(value === 0)
+          return "一级";
+        else
+          return "二级";
       }
     }
   }

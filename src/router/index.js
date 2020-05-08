@@ -57,21 +57,22 @@ export const constantRoutes = [
   {
     path: '/pms',
     component: Layout,
-    redirect: '/pms//productCategory/list',
+    redirect: '/pms/productCategory/list',
     name: 'Pms',
     meta: { title: '商品', icon: 'product' },
     children: [
       {
         path: '/productCategory/list',
-        name: 'Table',
+        name: 'ProductCategoryList',
         component: () => import('@/views/pms/productCategory/list'),
-        meta: { title: '商品分类', icon: 'product-list' }
+        meta: { title: '商品分类', icon: 'product-cate' }
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        path: '/productCategory/add',
+        name: 'AddProductCategory',
+        component: () => import('@/views/pms/productCategory/components/categoryDetail'),
+        meta: { title: '添加商品分类' },
+//        hidden: true
       }
     ]
   },
