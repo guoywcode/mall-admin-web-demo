@@ -16,7 +16,7 @@
         <el-input v-model="productCategory.sort"></el-input>
       </el-form-item>
       <el-form-item lable="是否显示">
-        <el-radio-group v-model="productCategory.navStudent">
+        <el-radio-group v-model="productCategory.navStatus">
           <el-radio :lable="1">是</el-radio>
           <el-radio :lable="0">否</el-radio>
         </el-radio-group>
@@ -28,14 +28,14 @@
         </el-radio-group>
       </el-form-item>
       <el-form-item lable="分类图标">
-        <single-update v-model="productCategory.icon">
-        </single-update>
+        <SingleUpload
+          v-model="productCategory.icon">
+        </SingleUpload>
       </el-form-item>
       <el-form-item
         v-for="(filterProductAttr,index) in filterProductAttrList"
         :lable="index | filterLabelFilter"
         :key="filterProductAttr.key">
-        
         <el-cascader
           clearable
           v-model="filterProductAttr.value"
@@ -62,6 +62,8 @@
 </template>
 
 <script>
+  import SingleUpload from '@/components/Upload/singleUpload';
+  
   
   const defaultProductCate = {
     description: '',
@@ -78,6 +80,7 @@
   
   export default {
     name:"ProductCategoryDetail",
+    components: {SingleUpload},
     props:{
       isEdit:{
         type:Boolean,

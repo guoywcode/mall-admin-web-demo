@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function getList() {
+export function policy() {
   return request({
     url: 'api/oss/aliyun/policy',
     method: 'get'
