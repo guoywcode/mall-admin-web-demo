@@ -50,7 +50,7 @@ export const constantRoutes = [
     children: [{
       path: 'home',
       name: 'Home',
-      component: () => import('@/views/pms/list'),
+      component: () => import('@/views/home/index'),
       meta: { title: '首页', icon: 'home' }
     }]
   },
@@ -62,6 +62,13 @@ export const constantRoutes = [
     meta: { title: '商品', icon: 'product' },
     children: [
       {
+        path: '/product/list',
+        name: 'ProductList',
+        component: () => import('@/views/pms/product/list'),
+        meta: { title: '商品列表', icon: 'product-list' }
+      },
+
+      {
         path: '/productCategory/list',
         name: 'ProductCategoryList',
         component: () => import('@/views/pms/productCategory/list'),
@@ -71,8 +78,8 @@ export const constantRoutes = [
         path: '/productCategory/add',
         name: 'AddProductCategory',
         component: () => import('@/views/pms/productCategory/components/categoryDetail'),
-        meta: { title: '添加商品分类' },
-//        hidden: true
+        meta: { title: '添加商品分类' }
+        //        hidden: true
       }
     ]
   },
