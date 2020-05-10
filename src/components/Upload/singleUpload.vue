@@ -1,24 +1,9 @@
 <template>
   <div>
-    <el-upload
-      class="avatar-uploader"
-      action="http://guoyw-mall.oss-cn-shanghai.aliyuncs.com"
-      :data="dataObj"
-      list-type="picture"
-      :multiple="false"
-      :show-file-list="showFileList"
-      :file-list="fileList"
-      :before-upload="beforeUpload"
-      :on-remove="handleRemove"
-      :on-success="handleUploadSuccess"
-      :on-preview="handlePreview">
-      <el-button
-        size="small"
-        :disabled="isDisabled"
-        type="primary">点击上传</el-button>
+    <el-upload class="avatar-uploader" action="http://guoyw-mall.oss-cn-shanghai.aliyuncs.com" :data="dataObj" list-type="picture" :multiple="false" :show-file-list="showFileList" :file-list="fileList" :before-upload="beforeUpload" :on-remove="handleRemove" :on-success="handleUploadSuccess" :on-preview="handlePreview">
+      <el-button size="small" :disabled="isDisabled" type="primary">点击上传</el-button>
       <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过10M</div>
     </el-upload>
-    
     <el-dialog :visible.sync="dialogVisible">
       <img width="100%" :src="fileList[0].url" alt="">
     </el-dialog>
@@ -26,12 +11,12 @@
 </template>
 
 <script>
-  import { policy } from '@/api/oss'
+  import {policy} from '@/api/oss'
   
   export default {
     name:'SingleUpload',
     props:{
-      value: String
+      value:String
     },
     data(){
       return {
@@ -44,7 +29,7 @@
           host:''
           // callback:'',
         },
-        dialogVisible: false
+        dialogVisible:false
       }
     },
     computed:{
@@ -57,7 +42,7 @@
         }
       },
       imageName(){
-        console.log("imageName",this.value)
+        console.log("imageName", this.value)
         if(this.value != null && this.value !== ''){
           return this.value.substr(this.value.lastIndexOf('/') + 1)
         }else{
@@ -74,12 +59,12 @@
         }]
       },
       isDisabled(){
-        console.log("fileList",this.fileList.length,this.fileList.name)
+        console.log("fileList", this.fileList.length, this.fileList.name)
         if(this.fileList.length > 0 && this.fileList[0].name !== null && this.fileList[0].name !== undefined){
-          console.log("isDisabled",true)
+          console.log("isDisabled", true)
           return true;
         }
-        console.log("isDisabled",false)
+        console.log("isDisabled", false)
         return false;
       },
     },
@@ -125,7 +110,5 @@
 </script>
 
 <style scoped>
-  .disabled .el-upload--picture-card {
-    display: none;
-  }
+
 </style>

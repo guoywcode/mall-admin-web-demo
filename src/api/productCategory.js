@@ -7,6 +7,13 @@ export function getList() {
   })
 }
 
+export function getDetail(id) {
+  return request({
+    url: 'api/productCategory/' + id,
+    method: 'get'
+  })
+}
+
 export function updateNavStatus(data) {
   return request({
     url: 'api/productCategory/updateNavStatus',
