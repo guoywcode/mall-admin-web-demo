@@ -57,29 +57,42 @@ export const constantRoutes = [
   {
     path: '/pms',
     component: Layout,
-    redirect: '/pms/productCategory/list',
+    redirect: '/pms/product/list',
     name: 'Pms',
     meta: { title: '商品', icon: 'product' },
     children: [
       {
-        path: '/product/list',
+        path: 'product/list',
         name: 'ProductList',
         component: () => import('@/views/pms/product/list'),
         meta: { title: '商品列表', icon: 'product-list' }
       },
-
       {
-        path: '/productCategory/list',
-        name: 'ProductCategoryList',
-        component: () => import('@/views/pms/productCategory/list'),
-        meta: { title: '商品分类', icon: 'product-cate' }
+        path: 'product/add',
+        name: 'AddProduct',
+        component: () => import('@/views/pms/product/add'),
+        meta: { title: '添加商品', icon: 'product-add' }
       },
       {
-        path: '/productCategory/add',
-        name: 'AddProductCategory',
-        component: () => import('@/views/pms/productCategory/components/categoryDetail'),
-        meta: { title: '添加商品分类' }
-        //        hidden: true
+        path: 'productCategory',
+        name: 'ProductCategory',
+        redirect: 'productCategory/list',
+        component: () => import('@/views/pms/productCategory/list'),
+        children: [
+          {
+            path: 'list',
+            name: 'ProductCategoryList',
+            component: () => import('@/views/pms/productCategory/list'),
+            meta: { title: '商品分类', icon: 'product-cate' }
+          },
+          {
+            path: 'add',
+            name: 'AddProductCategory',
+            component: () => import('@/views/pms/productCategory/add'),
+            meta: { title: '添加商品分类' },
+            hidden: true
+          }
+        ]
       }
     ]
   },

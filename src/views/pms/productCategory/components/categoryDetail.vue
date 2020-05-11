@@ -28,9 +28,9 @@
         </el-radio-group>
       </el-form-item>
       <el-form-item label="分类图标">
-        <SingleUpload
+        <single-upload
           v-model="productCategory.icon">
-        </SingleUpload>
+        </single-upload>
       </el-form-item>
       <el-form-item
         v-for="(filterProductAttr,index) in filterProductAttrList"

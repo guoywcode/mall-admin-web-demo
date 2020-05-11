@@ -136,7 +136,7 @@
         });
       },
       handleAddProductCategory(){
-        this.$router.push('AddProductCategory');
+        this.$router.push('/pms/productCategory/add');
       }
     },
     filters:{

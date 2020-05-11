@@ -42,7 +42,6 @@
         }
       },
       imageName(){
-        console.log("imageName", this.value)
         if(this.value != null && this.value !== ''){
           return this.value.substr(this.value.lastIndexOf('/') + 1)
         }else{
@@ -59,12 +58,9 @@
         }]
       },
       isDisabled(){
-        console.log("fileList", this.fileList.length, this.fileList.name)
         if(this.fileList.length > 0 && this.fileList[0].name !== null && this.fileList[0].name !== undefined){
-          console.log("isDisabled", true)
           return true;
         }
-        console.log("isDisabled", false)
         return false;
       },
     },
