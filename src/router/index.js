@@ -74,25 +74,23 @@ export const constantRoutes = [
         meta: { title: '添加商品', icon: 'product-add' }
       },
       {
-        path: 'productCategory',
-        name: 'ProductCategory',
-        redirect: 'productCategory/list',
+        path: 'productCategory/list',
+        name: 'ProductCategoryList',
         component: () => import('@/views/pms/productCategory/list'),
-        children: [
-          {
-            path: 'list',
-            name: 'ProductCategoryList',
-            component: () => import('@/views/pms/productCategory/list'),
-            meta: { title: '商品分类', icon: 'product-cate' }
-          },
-          {
-            path: 'add',
-            name: 'AddProductCategory',
-            component: () => import('@/views/pms/productCategory/add'),
-            meta: { title: '添加商品分类' },
-            hidden: true
-          }
-        ]
+        meta: { title: '商品分类', icon: 'product-cate' }
+      },
+      {
+        path: 'productCategory/add',
+        name: 'AddProductCategory',
+        component: () => import('@/views/pms/productCategory/add'),
+        meta: { title: '添加商品分类' },
+        hidden: true
+      },
+      {
+        path: 'brand/list',
+        name: 'BrandList',
+        component: () => import('@/views/pms/brand/list'),
+        meta: { title: '品牌', icon: 'product-cate' }
       }
     ]
   },

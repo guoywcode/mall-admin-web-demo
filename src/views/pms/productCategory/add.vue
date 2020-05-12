@@ -1,7 +1,5 @@
 <template>
-  <div class="app-container">
-    <product-category-detail :is-edit="false"></product-category-detail>
-  </div>
+  <product-category-detail :is-edit="false"></product-category-detail>
 </template>
 
 <script>
@@ -9,7 +7,7 @@
   
   export default {
     name:"AddProductCategory",
-    component:{ProductCategoryDetail}
+    components:{ProductCategoryDetail}
   }
 </script>
 

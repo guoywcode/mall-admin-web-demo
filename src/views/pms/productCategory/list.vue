@@ -88,7 +88,6 @@
       getList(){
         this.listLoading = true;
         getList().then(response => {
-          console.log(response)
           this.listLoading = false;
           this.list = response.data;
           this.total = response.data.total;
@@ -136,7 +135,7 @@
         });
       },
       handleAddProductCategory(){
-        this.$router.push('/pms/productCategory/add');
+        this.$router.push({name:'AddProductCategory'});
       }
     },
     filters:{

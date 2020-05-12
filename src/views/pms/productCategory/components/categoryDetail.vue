@@ -57,7 +57,6 @@
         <el-button v-if="!isEdit" @click="resetForm('productCateFrom')">重置</el-button>
       </el-form-item>
     </el-form>
-  
   </el-card>
 </template>
 
