@@ -17,7 +17,10 @@
     </el-card>
     
     <div class="table-container">
-      <el-table :data="brandList">
+      <el-table
+        :data="brandList"
+        v-loading="listLoading"
+      >
         <el-table-column label="编号">
           <template slot-scope="scope">{{scope.row.id}}</template>
         </el-table-column>
@@ -32,12 +35,18 @@
         </el-table-column>
         <el-table-column label="品牌制造商">
           <template slot-scope="scope">
-            <el-switch :model="scope.row.factoryStatus" :active-value="1" :inactive-value="0" @change="handleFactoryStatus(scope.$index,scope.row)"></el-switch>
+            <el-switch v-model="scope.row.factoryStatus"
+              :active-value="1"
+              :inactive-value="0"
+              @change="handleFactoryStatus(scope.$index,scope.row)"></el-switch>
           </template>
         </el-table-column>
         <el-table-column label="是否显示">
           <template slot-scope="scope">
-            <el-switch :model="scope.row.showStatus" :active-value="1" :inactive-value="0" @change="handleShowStatus(scope.$index,scope.row)"></el-switch>
+            <el-switch v-model="scope.row.showStatus"
+              :active-value="1"
+              :inactive-value="0"
+              @change="handleShowStatus(scope.$index,scope.row)"></el-switch>
           </template>
         </el-table-column>
         <el-table-column label="相关">
@@ -63,30 +72,51 @@
 </template>
 
 <script>
+  import { branchList,updateShowStatus } from "@/api/brand";
+
   export default {
     name:"",
     data(){
       return {
         brandQuery:{},
-        brandList:[]
+        brandList:[],
+        listLoading:false,
+        page:{
+          pageNum:1,
+          pageSize:5
+        },
+        total:null
       }
     },
+    created(){
+      this.getBrandList();
+    },
     methods:{
+      getBrandList(){
+        branchList().then(response => {
+          this.brandList=response.data
+          this.total=response.total
+        })
+      },
       searchBrandList(){
         this.$message('筛选结果')
       },
       handleFactoryStatus(index, row){
-        if(row.factoryStatus === 0){
-          row.factoryStatus = 1;
-        }else{
-          row.factoryStatus = 0;
-        }
+        console.log("handleFactoryStatus")
+        updateShowStatus({'id':row.id}).then(response => {
+         this.$message({
+            message:'修改成功',
+            type:'success',
+            duration:1000
+          });
+        })
       },
       handleShowStatus(index, row){
-        if(row.factoryStatus === 0){
-          row.factoryStatus = 1;
+        console.log("handleShowStatus")
+        if(row.showStatus == 0){
+          row.showStatus = 1;
         }else{
-          row.factoryStatus = 0;
+          row.showStatus = 0;
         }
       }
     }

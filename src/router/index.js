@@ -90,7 +90,7 @@ export const constantRoutes = [
         path: 'brand/list',
         name: 'BrandList',
         component: () => import('@/views/pms/brand/list'),
-        meta: { title: '品牌', icon: 'product-cate' }
+        meta: { title: '品牌列表', icon: 'product-cate' }
       }
     ]
   },
